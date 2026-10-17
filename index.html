@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valeria León | Diseñadora</title>
+  <meta name="description" content="Valeria León, diseñadora en formación. Conceptual, expresiva, visual y versátil.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="page-home">
+
+  <header class="site-header">
+    <nav class="nav" aria-label="Navegación principal">
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-list">
+        <span class="nav__toggle-bar"></span>
+        <span class="nav__toggle-bar"></span>
+        <span class="nav__toggle-bar"></span>
+        <span class="visually-hidden">Abrir menú</span>
+      </button>
+
+      <ul class="nav__list" id="nav-list">
+        <li><a class="tab tab--home" href="index.html" aria-current="page">Home</a></li>
+        <li><a class="tab tab--portfolio" href="portafolio.html">Portafolio</a></li>
+        <li><a class="tab tab--contact" href="contacto.html">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="hero">
+    <section class="hero__stage" aria-labelledby="hero-title">
+
+      <p class="hero__hello">My name is</p>
+
+      <div class="hero__frame">
+        <h1 id="hero-title" class="visually-hidden">Valeria León</h1>
+
+        <div class="beads" aria-hidden="true">
+          <div class="beads__row">
+            <span class="bead">V</span><span class="bead">A</span><span class="bead">L</span><span class="bead">E</span><span class="bead">R</span><span class="bead">I</span><span class="bead">A</span>
+          </div>
+          <div class="beads__row">
+            <span class="bead">L</span><span class="bead">E</span><span class="bead">O</span><span class="bead">N</span>
+          </div>
+        </div>
+      </div>
+
+      <ul class="chips" aria-label="Cualidades">
+        <li class="chip chip--conceptual">Conceptual</li>
+        <li class="chip chip--expresiva">Expresiva</li>
+        <li class="chip chip--visual">Visual</li>
+        <li class="chip chip--versatil">Versatil</li>
+      </ul>
+    </section>
+
+    <section class="hero__intro">
+      <p>Diseñadora en formación, apasionada por transformar ideas en experiencias visuales que comunican, conectan y generan impacto.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Valeria León</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

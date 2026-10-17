@@ -1,0 +1,294 @@
+/* =========================================================
+   1. ESTILOS GLOBALES
+   ========================================================= */
+
+/* Si tienes los archivos de las fuentes, ponlos en /fonts con estos nombres */
+@font-face {
+  font-family: "Alphabet Bead Font";
+  src: url("fonts/AlphabetBead.woff2") format("woff2"),
+       url("fonts/AlphabetBead.ttf") format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "VCR OSD Mono";
+  src: url("fonts/VCR_OSD_MONO.woff2") format("woff2"),
+       url("fonts/VCR_OSD_MONO.ttf") format("truetype");
+  font-display: swap;
+}
+
+:root {
+  /* Paleta */
+  --color-crema: #FEFBF2;
+  --color-vino: #600E1A;
+  --color-azul: #0B3545;
+  --color-naranja: #D77C0A;
+  --color-verde: #5E6E3B;      /* verde oliva de la referencia (no está en la paleta base) */
+  --color-vino-suave: #8F545C; /* pestaña Home */
+
+  /* Texto */
+  --texto-oscuro: #000000;
+  --texto-claro: #FFFFFF;
+
+  /* Tipografías */
+  --font-bead: "Alphabet Bead Font", "Arial Rounded MT Bold", Arial, sans-serif;
+  --font-mono: "VCR OSD Mono", "Courier New", monospace;
+  --font-body: "Raleway", system-ui, sans-serif;
+
+  --espacio: clamp(1rem, 4vw, 2rem);
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-body);
+  color: var(--texto-oscuro);
+  background-color: var(--color-crema);
+  /* Cuadrícula tipo cuaderno */
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.07) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.07) 2px, transparent 2px);
+  background-size: 64px 64px;
+}
+
+ul { list-style: none; }
+a { text-decoration: none; color: inherit; }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* =========================================================
+   2. NAVEGACIÓN (pestañas tipo carpeta)
+   ========================================================= */
+.site-header { padding: var(--espacio); }
+
+.nav { position: relative; display: flex; justify-content: flex-end; }
+
+/* Botón hamburguesa (solo móvil) */
+.nav__toggle {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0.7rem;
+  background: var(--color-azul);
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.nav__toggle-bar {
+  width: 24px; height: 3px;
+  background: var(--texto-claro);
+  border-radius: 2px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+.nav__toggle[aria-expanded="true"] .nav__toggle-bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.nav__toggle[aria-expanded="true"] .nav__toggle-bar:nth-child(2) { opacity: 0; }
+.nav__toggle[aria-expanded="true"] .nav__toggle-bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+.nav__list {
+  position: absolute;
+  top: calc(100% + 1.2rem);
+  right: 0;
+  z-index: 10;
+  display: none;
+  flex-direction: column;
+  gap: 1.4rem;
+  width: min(240px, 80vw);
+}
+.nav__list.is-open { display: flex; }
+
+/* Pestaña */
+.tab {
+  --tab-color: var(--color-azul);
+  --tab-dark: #061f29;
+  position: relative;
+  display: block;
+  padding: 1.1rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--texto-claro);
+  background: var(--tab-color);
+  border-radius: 12px;
+  transition: transform 0.2s;
+}
+/* Lengüeta superior de la carpeta */
+.tab::before {
+  content: "";
+  position: absolute;
+  top: -10px; left: 0;
+  width: 38%; height: 12px;
+  background: var(--tab-dark);
+  border-radius: 8px 8px 0 0;
+}
+.tab:hover,
+.tab:focus-visible { transform: translateY(-3px); }
+.tab:focus-visible { outline: 3px solid var(--color-naranja); outline-offset: 3px; }
+
+.tab--home      { --tab-color: var(--color-vino-suave); --tab-dark: #6f3a42; }
+.tab--portfolio { --tab-color: var(--color-verde);      --tab-dark: #3f4a28; }
+.tab--contact   { --tab-color: var(--color-azul);       --tab-dark: #04161d; }
+
+/* =========================================================
+   3. HOME
+   ========================================================= */
+.hero {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  padding: 1rem var(--espacio) 2rem;
+}
+
+.hero__stage {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.hero__hello {
+  font-family: var(--font-mono);
+  font-size: clamp(1.3rem, 5vw, 2.2rem);
+  align-self: flex-start;
+  margin-left: 12%;
+}
+
+/* Marco dibujado a mano */
+.hero__frame {
+  width: 100%;
+  max-width: 700px;
+  padding: clamp(1.2rem, 4vw, 2.5rem) clamp(0.5rem, 2vw, 1.5rem);
+  border: clamp(6px, 1.2vw, 12px) solid var(--color-vino);
+  border-radius: 8px 12px 6px 14px / 12px 6px 14px 8px;
+  transform: rotate(-0.4deg);
+}
+
+/* Letras tipo cuentas */
+.beads {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(0.5rem, 2vw, 1.4rem);
+}
+.beads__row {
+  display: flex;
+  justify-content: center;
+  gap: clamp(2px, 0.8vw, 10px);
+}
+.bead {
+  --size: clamp(36px, 10.5vw, 100px);
+  display: grid;
+  place-items: center;
+  width: var(--size);
+  height: var(--size);
+  font-family: var(--font-bead);
+  font-size: calc(var(--size) * 0.55);
+  font-weight: 700;
+  color: var(--texto-oscuro);
+  background: radial-gradient(circle at 35% 30%, #ffffff 0%, #f1f1ef 60%, #dcdcd8 100%);
+  border-radius: 50%;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.18), inset 0 -4px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* Etiquetas (chips) */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem;
+}
+.chip {
+  padding: 0.8rem 1.8rem;
+  font-family: var(--font-mono);
+  font-size: clamp(0.95rem, 3.5vw, 1.2rem);
+  color: var(--texto-claro);
+  border-radius: 999px;
+}
+.chip--conceptual { background: var(--color-azul); }
+.chip--expresiva  { background: var(--color-verde); }
+.chip--visual     { background: var(--color-naranja); }
+.chip--versatil   { background: var(--color-vino); }
+
+/* Descripción */
+.hero__intro { max-width: 46ch; text-align: center; }
+.hero__intro p {
+  font-size: clamp(1.1rem, 4vw, 1.7rem);
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+/* =========================================================
+   4. FOOTER
+   ========================================================= */
+.site-footer {
+  padding: 1rem;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+/* =========================================================
+   5. RESPONSIVE (Mobile First)
+   ========================================================= */
+
+/* Tablet */
+@media (min-width: 768px) {
+  .nav__toggle { display: none; }
+
+  .nav__list {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    gap: 1.8rem;
+    width: auto;
+  }
+  .tab { min-width: 150px; padding: 1.1rem 1.4rem; }
+  .tab--home { padding-top: 1.3rem; padding-bottom: 0.9rem; }
+}
+
+/* Escritorio: chips alrededor del marco */
+@media (min-width: 1024px) {
+  .hero__stage { display: block; min-height: 480px; }
+
+  .hero__hello {
+    position: absolute;
+    top: 0; left: 50%;
+    margin: 0;
+    transform: translateX(-50%) translateX(-5%);
+  }
+
+  .hero__frame {
+    position: absolute;
+    top: 70px; left: 50%;
+    width: 700px;
+    transform: translateX(-50%) rotate(-0.4deg);
+  }
+
+  .chips { display: block; }
+  .chip { position: absolute; }
+  .chip--conceptual { top: 40px;  left: 0; }
+  .chip--expresiva  { top: 10px;  right: 0; }
+  .chip--visual     { bottom: 20px; left: 3%; }
+  .chip--versatil   { bottom: 90px; right: 0; }
+
+  .bead { --size: 88px; }
+}
